@@ -105,8 +105,8 @@ fun ProduitCard(produit: Produit) {
             // 2. Remplacez les deux lignes ci-dessous par :
             //      Text("Quantité : $quantite kg")
             //      Button(onClick = { quantite++ }) { Text("Ajouter 1 kg") }
-            Text("Quantité : (TODO A)")
-            Button(onClick = { /* TODO A */ }) { Text("Ajouter 1 kg") }
+            Text("Quantité : $quantite kg")
+            Button(onClick = { quantite++ }) { Text("Ajouter 1 kg") }
         }
     }
 }
