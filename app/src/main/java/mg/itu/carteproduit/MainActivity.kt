@@ -63,9 +63,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ProduitCard(produit: Produit) {
+    var quantite by remember { mutableStateOf(0) }
     // Ce log trace chaque (re)composition de la carte — NE PAS le déplacer.
-    Log.i("RECOMP", "ProduitCard se (re)compose")
-
+    var selectionnee by remember { mutableStateOf(false) }
+    Log.i("RECOMP", "ProduitCard se (re)compose $quantite ${ if (selectionnee) "couleur true" else "couleur false"}")
     // TODO B (à faire APRÈS le TODO A) :
     // 1. Déclarez ici un état booléen :
     //      var selectionnee by remember { mutableStateOf(false) }
@@ -77,13 +78,13 @@ fun ProduitCard(produit: Produit) {
     //              MaterialTheme.colorScheme.primaryContainer
     //          else MaterialTheme.colorScheme.surfaceVariant
     //      )
-    var quantite by remember { mutableStateOf(0) }
     Card(
-        modifier = Modifier
+        modifier = Modifier.clickable{selectionnee = !selectionnee}
             .fillMaxWidth()
             .padding(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = if (selectionnee) MaterialTheme.colorScheme.primaryContainer
+            else MaterialTheme.colorScheme.surfaceVariant
         ),
     ) {
         Column(Modifier.padding(16.dp)) {
